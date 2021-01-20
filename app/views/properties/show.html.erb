@@ -3,14 +3,14 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-8">
+    <div class="col-md-8">
       <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
           <p class="mb-0"><%= @property.address %></p>
-          <p class="h2"><%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : "For sale" %></p>
+          <p class="h2 mb-3"><%= @property.price > 0 ? number_to_currency(@property.price, precision: 0) : "For sale" %></p>
         </div>  
-        <div class="col-6 text-center">
-          <div class="row mr-3 bg-light p-3">
+        <div class="col-lg-6 text-center">
+          <div class="row mr-lg-3 mt-sm-3 bg-light p-3">
             <div class="col-4">
               <p class="m-0"><strong>Rooms</strong></p>
               <span class="lead"><%= @property.rooms %></span>
@@ -28,7 +28,7 @@
       </div>
       <div class="row border-top border-bottom mt-5 mb-4 pt-4 pb-4">
         <div class="col-6">
-          <strong><%= link_to "Est. Monthly Repayments of #{number_to_currency((@property.price / 360 ),precision: 0)}", "#", class: "text-success" %></strong>
+          <strong><%= link_to "Est. Monthly Repayments of #{number_to_currency((@property.price - (@property.price * 0.1)) / 360,precision: 0) } *", "#", class: "text-success" %></strong>
         </div>
         <div class="col-6 text-right">
           <strong><%= link_to "Can I afford this property?", "#", class: "text-success" %></strong>
@@ -45,14 +45,22 @@
               <%= simple_format @property.details %>
             </div>
             
-            <button class="btn btn-outline-info mt-3">Show more</button>
+            <button class="btn btn-outline-info mt-3" id="toggleDetails">Show more</button>
             
-            <p class="mt-5">t is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
+            <p class="mt-5">* This is based on a 30 year mortgage, after paying an initial 10% down payement. Shorter term mortages would require a higher monthly repayment.</p>
         </div>
       </div>
     </div>
-  <div class="col-4">
+  <div class="col-md-4">
     <%= render "properties/agent_details" %>
     <%#= render "properties/agent_details" %>
   </div>
 </div>
+  
+<section class="mt-5 mb-5">
+  <div class="container">
+    <div class="row">
+       <%= render "properties/list", properties: @agent_properties %>
+    </div>
+  </div>
+</section>

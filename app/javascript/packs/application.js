@@ -6,5 +6,12 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 
+var jQuery = require("jquery")
+global.$ = global.jQuery = jQuery
+window.$ = window.jQuery = jQuery
+
+require("bootstrap")
+require("@fortawesome/fontawesome-free")
+
 Rails.start()
 ActiveStorage.start()
