@@ -13,5 +13,11 @@ window.$ = window.jQuery = jQuery
 require("bootstrap")
 require("@fortawesome/fontawesome-free")
 
+import toastr from 'toastr';
+toastr.options = {
+  progressBar: true
+}
+global.toastr = toastr;
+
 Rails.start()
 ActiveStorage.start()
