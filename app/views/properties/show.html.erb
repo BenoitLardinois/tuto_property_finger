@@ -59,7 +59,9 @@
             
             <button class="btn btn-outline-info mt-3" id="toggleDetails">Show more</button>
             
-            <p class="mt-5">* This is based on a 30 year mortgage, after paying an initial 10% down payement. Shorter term mortages would require a higher monthly repayment.</p>
+            <% if @property.for_sale %>
+              <p class="mt-5">* This is based on a 30 year mortgage, after paying an initial 10% down payement. Shorter term mortages would require a higher monthly repayment.</p>
+            <% end %>
         </div>
       </div>
     </div>
@@ -73,7 +75,12 @@
 <section class="mt-5 mb-5">
   <div class="container">
     <div class="row">
-       <%= render "properties/list", properties: @agent_properties %>
+      <div class="col">
+        <p class="h3 mb-3">Other properties by this agent</p>
+      </div>
+      <%= render "properties/list", properties: @agent_properties %>
     </div>
   </div>
 </section>
+
+<%= render "properties/send_email_modal" %>
